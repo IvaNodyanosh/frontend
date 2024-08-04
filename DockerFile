@@ -1,11 +1,11 @@
-FROM node:alpine as build
+# Використання офіційного Nginx образу як базового
+FROM nginx:alpine
 
-COPY package.json package.json
-RUN npm install
-COPY . .
-RUN npm run build
+# Копіювання згенерованих файлів до Nginx
+COPY dist /usr/share/nginx/html
 
-COPY --from=build /dist /usr/share/nginx/html
-COPY --from=build ngix.conf etc/nginx/conf.d/default.conf
-EXPOSE 3000
-CMD [ "nginx", "-g", "daemon off;" ]
+# Встановлення конфігурації Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Відкриття порту
+EXPOSE 80
