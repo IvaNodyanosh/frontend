@@ -1,0 +1,162 @@
+.menu_box {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-color);
+  padding: 70px 0 50px 30px;
+}
+
+.back_drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.button_registration,
+.button_login {
+  color: var(--primary-text-color);
+  font-size: 20px;
+  font-family: "Dela Gothic One";
+  padding: 15px 0;
+  border-radius: 10px;
+  width: 210px;
+  display: inline-block;
+  text-align: center;
+}
+
+.button_registration:hover,
+.button_registration:focus {
+  background-color: var(--secondary-text-color);
+  color: var(--background-color);
+}
+
+.button_login {
+  margin-bottom: 30px;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 10px;
+
+  &:focus,
+  &:hover {
+    border: 2px solid var(--secondary-text-color);
+    color: var(--secondary-text-color);
+  }
+}
+
+.button_close {
+  position: absolute;
+  fill: var(--primary-text-color);
+  top: 15px;
+  right: 15px;
+
+  & > svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:focus,
+  &:hover {
+    fill: var(--secondary-text-color);
+  }
+}
+
+.personal_link,
+.home_link {
+  color: var(--primary-text-color);
+  font-size: 20px;
+  font-family: "Dela Gothic One";
+  padding: 15px 0;
+  border-radius: 10px;
+  width: 210px;
+  display: inline-block;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
+}
+
+.home_link {
+  margin-bottom: 20px;
+}
+
+.active {
+  color: var(--secondary-text-color);
+}
+
+.button_logout {
+  color: var(--primary-text-color);
+  font-size: 20px;
+  font-family: "Dela Gothic One";
+  padding: 15px 0px;
+  width: 210px;
+  display: inline-block;
+  text-align: center;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 10px;
+  margin-top: auto;
+
+  &:focus,
+  &:hover {
+    border: 2px solid var(--secondary-text-color);
+    color: var(--secondary-text-color);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .menu_box {
+    left: 60%;
+    padding: 70px 0 60px 50px;
+  }
+
+  .button_registration,
+  .button_login {
+    font-size: 22px;
+    padding: 20px 0;
+    width: 250px;
+  }
+
+  .personal_link,
+  .home_link {
+    font-size: 22px;
+    padding: 20px 0;
+    width: 250px;
+  }
+
+  .button_logout {
+    width: 250px;
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .menu_box {
+    left: 70%;
+    padding: 70px 0 70px 70px;
+  }
+
+  .button_registration,
+  .button_login {
+    font-size: 24px;
+    width: 275px;
+  }
+
+  .personal_link,
+  .home_link {
+    font-size: 24px;
+    width: 275px;
+  }
+
+  .button_logout {
+    width: 275px;
+    font-size: 24px;
+  }
+}

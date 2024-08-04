@@ -1,0 +1,153 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+
+  & > span {
+    padding-bottom: 5px;
+    font-family: "Roboto";
+    font-size: 20px;
+  }
+
+  & > input {
+    height: 40px;
+    background-color: transparent;
+    font-family: "Roboto";
+    font-size: 15px;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 10px;
+    color: var(--secondary-text-color);
+    padding: 10px 10px 10px 40px;
+
+    &::placeholder {
+      font-size: 15px;
+      font-family: "Roboto";
+    }
+
+    &:hover,
+    &:focus {
+      border: 2px solid var(--secondary-text-color);
+
+      & + svg {
+        fill: var(--secondary-text-color);
+      }
+    }
+  }
+}
+
+.icon {
+  fill: var(--primary-text-color);
+  position: absolute;
+  top: 42.5px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  transition: fill 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+}
+
+.button {
+  display: block;
+  margin: 40px auto 50px auto;
+  font-family: "Dela Gothic One";
+  font-size: 18px;
+  color: var(--primary-text-color);
+
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--primary-text-color);
+
+  transition: color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15),
+    background-color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
+}
+
+.cloud {
+  border: 1px solid var(--primary-text-color);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  & > svg {
+    display: block;
+    width: 100px;
+    height: 70px;
+    fill: var(--primary-text-color);
+  }
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--secondary-text-color);
+
+    & > svg {
+      fill: var(--secondary-text-color);
+    }
+
+    & > span {
+      color: var(--secondary-text-color);
+    }
+  }
+}
+
+.avatar {
+  &:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+
+  & > p {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--primary-text-color);
+  }
+
+  &_img {
+    height: auto;
+    width: 300px;
+  }
+
+  &_box {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-text-color);
+    margin: 0 auto 20px auto;
+    overflow: hidden;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .avatar_box {
+    height: 250px;
+    width: 250px;
+    margin: 0 auto 40px auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .avatar_box {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto 60px auto;
+  }
+}

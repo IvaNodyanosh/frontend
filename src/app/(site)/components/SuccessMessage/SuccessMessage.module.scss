@@ -1,0 +1,27 @@
+.text {
+  font-size: 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 300px;
+}
+
+.box{
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    padding: 20px;
+
+    > h2 {
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+    a {
+        color: var(--secondary-text-color);
+    }
+
+}
+
+.accent {
+   color: var(--secondary-text-color);
+}

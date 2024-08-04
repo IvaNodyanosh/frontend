@@ -1,0 +1,134 @@
+.item {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 18px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.button {
+  display: block;
+  margin: 40px auto 0 auto;
+  font-family: "Dela Gothic One";
+  font-size: 18px;
+  color: red;
+
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid red;
+
+  transition: color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15),
+    background-color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+  &:hover,
+  &:focus {
+    background-color: red;
+    color: var(--background-color);
+  }
+}
+
+.button_status {
+  display: block;
+  width: 300px;
+  text-align: center;
+  margin: 40px auto 0 auto;
+  font-family: "Dela Gothic One";
+  font-size: 18px;
+  color: var(--secondary-text-color);
+
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--secondary-text-color);
+
+  transition: color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15),
+    background-color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
+}
+
+.list_status {
+  width: 300px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--secondary-text-color);
+  border-left: 1px solid var(--secondary-text-color);
+  border-right: 1px solid var(--secondary-text-color);
+  transform: scaleY(0);
+}
+
+.item_status {
+  & button {
+    color: var(--secondary-text-color);
+    text-align: center;
+    padding: 10px 0;
+    width: 300px;
+    &:hover,
+    &:focus {
+      background-color: var(--secondary-text-color);
+      color: var(--background-color);
+    }
+  }
+}
+
+.box_status {
+  &:hover,
+  &:focus {
+    & .list_status {
+      transform: scaleY(100%);
+    }
+  }
+}
+
+.files_item {
+  display: flex;
+
+  &:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+
+  & a {
+    font-size: 18px;
+    color: var(--primary-text-color);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & svg {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    fill: var(--secondary-text-color);
+  }
+}
+
+.button_review {
+  display: block;
+  text-align: center;
+  margin: 40px auto 0 auto;
+  font-family: "Dela Gothic One";
+  font-size: 18px;
+  color: var(--secondary-text-color);
+
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--secondary-text-color);
+
+  transition: color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15),
+    background-color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .item{
+    flex-direction: column;
+  }
+}

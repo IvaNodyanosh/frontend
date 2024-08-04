@@ -1,0 +1,33 @@
+.list {
+  padding: 15px 0 100px 0;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+
+  & p {
+    color: var(--primary-text-color);
+  }
+}
+
+.time {
+  display: flex;
+  padding-right: auto;
+  color: var(--primary-text-color);
+  padding-left: auto;
+}
+
+.item {
+  padding: 15px 10px;
+  border-radius: 10px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+
+    & p {
+      color: var(--background-color);
+    }
+  }
+}

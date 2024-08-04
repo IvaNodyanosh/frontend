@@ -1,0 +1,159 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 24px;
+  text-align: center;
+  padding-bottom: 20px;
+  color: var(--primary-text-color);
+}
+
+.label {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+
+  & > span {
+    padding-bottom: 5px;
+    font-family: "Roboto";
+    font-size: 20px;
+  }
+
+  & > input,
+  & > textarea {
+    height: 40px;
+    background-color: transparent;
+    font-family: "Roboto";
+    font-size: 15px;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 10px;
+    color: var(--secondary-text-color);
+    padding: 10px 10px 10px 40px;
+
+    &::placeholder {
+      font-size: 15px;
+      font-family: "Roboto";
+    }
+
+    &:hover,
+    &:focus {
+      border: 2px solid var(--secondary-text-color);
+
+      & + svg {
+        fill: var(--secondary-text-color);
+      }
+    }
+  }
+
+  & > textarea {
+    height: 100px;
+  }
+}
+
+.icon {
+  fill: var(--primary-text-color);
+  position: absolute;
+  top: 42.5px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  transition: fill 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+
+}
+
+.button {
+  display: block;
+  margin: 40px auto 50px auto;
+  font-family: "Dela Gothic One";
+  font-size: 18px;
+  color: var(--primary-text-color);
+
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 1px solid var(--primary-text-color);
+
+  transition: color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15),
+    background-color 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-text-color);
+    color: var(--background-color);
+  }
+}
+
+.cloud {
+  border: 1px solid var(--primary-text-color);
+  border-radius: 10px;
+  height: 120px;
+  & > svg {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 100px;
+    height: 70px;
+    fill: var(--primary-text-color);
+  }
+
+  &:hover,
+  &:focus {
+    border: 2px solid var(--secondary-text-color);
+
+    & > svg {
+      fill: var(--secondary-text-color);
+    }
+
+    & > span {
+      color: var(--secondary-text-color);
+    }
+  }
+
+  &_text {
+    font-family: "Roboto";
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+  }
+}
+
+.files_list {
+  padding-top: 20px;
+}
+
+.files_item {
+  display: flex;
+  padding-left: 10px;
+
+  &:not(:last-of-type){
+    margin-bottom: 5px;
+  }
+
+  & > p {
+    font-size: 18px;
+    padding-left: 3px;
+  }
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--primary-text-color);
+  }
+}
+
+.button_delete {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+
+  & > svg {
+    height: 24px;
+    width: 24px;
+    fill: var(--primary-text-color);
+  }
+}

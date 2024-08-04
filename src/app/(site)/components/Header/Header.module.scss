@@ -1,0 +1,49 @@
+.box {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  left: 0;
+}
+
+.container {
+  position: relative;
+}
+
+.header {
+  margin: auto 0;
+  display: flex;
+}
+
+.logo {
+  width: 150px;
+  margin-right: auto;
+}
+
+.button {
+  color: var(--secondary-text-color);
+  font-family: "Dela Gothic One";
+  font-size: 14px;
+}
+
+@media screen and (min-width: 900px) and (max-width: 1440px) {
+  .button {
+    font-size: 17px;
+  }
+
+  .logo {
+    width: 175px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .button {
+    font-size: 20px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+}

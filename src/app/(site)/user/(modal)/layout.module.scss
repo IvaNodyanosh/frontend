@@ -1,0 +1,54 @@
+.back_drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.form_box {
+  position: absolute;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  padding: 40px;
+  width: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+}
+
+.icon_cancel {
+  width: 30px;
+  height: 30px;
+  fill: var(--primary-text-color);
+  transition: fill 0.3s cubic-bezier(0.57, 0.2, 1, 1.15);
+
+  &:hover,
+  &:focus {
+    fill: var(--secondary-text-color);
+  }
+}
+
+.button_close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 15px;
+  right: 15px;
+}
+
+@media screen and (min-width: 900px) {
+  .form_box {
+    width: 420px;
+    padding: 42px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .form_box {
+    width: 500px;
+    padding: 45px;
+  }
+}
