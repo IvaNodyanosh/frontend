@@ -1,13 +1,17 @@
 "use client";
 
-import { useState, createContext, useEffect } from "react";
+import { useState, useEffect} from "react";
+import React from "react";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
+
+import { UserContext } from "../contexts/UserContext";
+
 import { getCurrentUser } from "./_api/currentUser";
 
-export const UserContext = createContext({});
+
 
 export default function GlobalLayout({
   children,
@@ -21,7 +25,7 @@ export default function GlobalLayout({
     }
   }, []);
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<{name: string, surname: string, statusUser: string, token: string, avatarUrl: string}>({
     name: "",
     surname: "",
     statusUser: "",
@@ -31,7 +35,9 @@ export default function GlobalLayout({
 
   return (
     <>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider
+        value={{ user, setUser }}
+      >
         <Header />
         <main>{children}</main>
         <Footer />

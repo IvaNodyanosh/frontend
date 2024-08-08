@@ -1,4 +1,4 @@
-export async function logout(setUser, token) {
+export async function logout(setUser: Function, token: string) {
   await fetch("http://localhost:3100/api/users/logout", {
     method: "POST",
     headers: {

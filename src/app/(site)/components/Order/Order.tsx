@@ -4,16 +4,36 @@ import styles from "./Order.module.scss";
 
 import { getCustomer } from "../../_api/getCustomer";
 
+import { useUserContext } from "@/app/hooks/userHooks";
+
 import { useContext, useState, useEffect } from "react";
-import { OrdersContext } from "../../user/page";
-import { UserContext } from "@/app/(site)/layout";
+import { OrdersContext } from "@/app/contexts/OrderContext";
+import { UserContext } from "@/app/contexts/UserContext";
 import { changeStatusOrder } from "@/app/(site)/_api/changeStatusOrder";
 
-export function Order({ value }) {
-  const [customer, setCustomer] = useState({});
+interface Customer {
+  name: string;
+  surname: string;
+}
+
+interface OrderItem {
+  _id: string;
+  createdAt: string;
+  status: string;
+  message?: string;
+  files: string[];
+  userId: string;
+}
+
+export function Order({
+  value,
+}: {
+  value: { orderId: string; setLoading: Function };
+}) {
+  const [customer, setCustomer] = useState<Customer>({ name: "", surname: "" });
   const { orderId, setLoading } = value;
-  const orders = useContext(OrdersContext);
-  const { user } = useContext(UserContext);
+  const orders: OrderItem[] = useContext(OrdersContext);
+  const { user } = useUserContext();
 
   useEffect(() => {
     if (user.statusUser === "owner" && orders[0]) {
@@ -21,7 +41,7 @@ export function Order({ value }) {
     }
   }, [orders, user.statusUser]);
 
-  const statusOrder = {
+  const statusOrder: Record<string, string> = {
     registered: "ZAREGISTROVÁNO",
     accepted: "PŘIJATO",
     completed: "DOKONČENO",
@@ -29,14 +49,14 @@ export function Order({ value }) {
     cancelledUser: "ZRUŠENO ZÁKAZNÍKEM",
   };
 
-  const orderItem = orders.find((order) => order._id === orderId);
+  const orderItem = orders.find((order: OrderItem) => order._id === orderId);
 
   return (
     <>
       {orderItem ? (
         <div>
           <ul>
-            {user.statusUser === "owner" && customer.name && (
+            {user.statusUser === "owner" && customer.name === "" && (
               <li className={styles.item}>
                 <h2 className={styles.header}>ZÁKAZNIK:</h2>
                 <p>{customer.name + " " + customer.surname}</p>
@@ -89,7 +109,12 @@ export function Order({ value }) {
               </button>
             )}
           {orderItem.status === "completed" && user.statusUser !== "owner" && (
-            <button className={styles.button_review} onClick={() => setLoading('review')}>PŘIDAT RECENZI</button>
+            <button
+              className={styles.button_review}
+              onClick={() => setLoading("review")}
+            >
+              PŘIDAT RECENZI
+            </button>
           )}
 
           {user.statusUser === "owner" && (
@@ -97,14 +122,12 @@ export function Order({ value }) {
               <p className={styles.button_status}>ZMĚNIT STAV OBJEDNÁVKY</p>
               <ul
                 className={styles.list_status}
-                onClick={({ target }) =>
-                  changeStatusOrder(
-                    target.value,
-                    setLoading,
-                    user.token,
-                    orderId
-                  )
-                }
+                onClick={({ target }) => {
+                  const value = (target as HTMLElement).getAttribute("value");
+                  if (value) {
+                    changeStatusOrder(value, setLoading, user.token, orderId);
+                  }
+                }}
               >
                 <li className={styles.item_status}>
                   <button value="accepted">PŘIJMOUT</button>

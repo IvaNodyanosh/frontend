@@ -1,8 +1,4 @@
-export async function verify(
-  token,
-  setLoading
-) {
-
+export async function verify(token: string, setLoading: Function) {
   const data = await fetch(`http://localhost:3100/api/users/verify/${token}`, {
     method: "GET",
     headers: {
@@ -13,7 +9,7 @@ export async function verify(
       return res.json();
     })
     .then((data) => data);
-  
+
   console.log(data.message);
 
   if (data.message === "Verification successful") {

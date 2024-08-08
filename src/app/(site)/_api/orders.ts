@@ -1,11 +1,11 @@
 export async function createOrder(
-  name,
-  surname,
-  email,
-  phone,
-  message,
-  files,
-  setLoading
+  name: string,
+  surname: string,
+  email: string,
+  phone: string,
+  message: string,
+  files: File[],
+  setLoading: Function
 ) {
   const formData = new FormData();
   formData.append("name", name);
@@ -37,10 +37,10 @@ export async function createOrder(
 }
 
 export async function registerOrder(
-  token,
-  message,
-  files,
-  setLoading,
+  token: string,
+  message: string,
+  files: File[],
+  setLoading: Function,
 ) {
   const formData = new FormData();
   formData.append("message", message);

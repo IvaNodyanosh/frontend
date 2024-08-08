@@ -1,4 +1,4 @@
-export async function getOrders(setOrders) {
+export async function getOrders(setOrders: Function) {
   const token = localStorage.getItem("token");
   const data = await fetch("http://localhost:3100/api/orders/", {
     method: "GET",

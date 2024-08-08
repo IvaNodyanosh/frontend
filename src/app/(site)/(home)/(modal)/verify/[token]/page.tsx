@@ -2,17 +2,22 @@
 
 import { useEffect, useState } from "react";
 
+import { useParams } from "next/navigation";
+
 import { Loader } from "@/app/(site)/components/Loader/loader";
 import { ErrorMessage } from "@/app/(site)/components/ErrorMessage/ErrorMessage";
 import { SuccessMessage } from "@/app/(site)/components/SuccessMessage/SuccessMessage";
 import { verify } from "@/app/(site)/_api/verifyEmail";
 
-export default function VerifyEmail(context) {
+export default function VerifyEmail() {
+  const params: { token: string } = useParams();
+  const { token } = params;
   const [loading, setLoading] = useState("load");
-  const { token } = context.params;
 
   useEffect(() => {
-    verify(token, setLoading);
+    if (token) {
+      verify(token, setLoading);
+    }
   }, [token]);
 
   switch (loading) {

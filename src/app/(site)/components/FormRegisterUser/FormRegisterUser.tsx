@@ -2,7 +2,7 @@ import { useState } from "react";
 import { registerUser } from "../../_api/registerUser";
 import styles from "./FormRegisterUser.module.scss";
 
-export function FormRegisterUser({ setLoading }) {
+export function FormRegisterUser({ setLoading }: {setLoading: Function}) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");

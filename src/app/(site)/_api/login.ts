@@ -1,9 +1,21 @@
 
 
-export async function login(email, password, setLoading, setUser) {
+export async function login(
+  email: string,
+  password: string,
+  setLoading: Function,
+  setUser: Function
+) {
   const body = { email, password };
 
-  const data = await fetch("http://localhost:3100/api/users/login", {
+  const data: {
+    avatarUrl: string;
+    name: string;
+    statusUser: string;
+    surname: string;
+    token: string;
+    message?: string;
+  } = await fetch("http://localhost:3100/api/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -13,8 +25,21 @@ export async function login(email, password, setLoading, setUser) {
     .then((res) => res.json())
     .then((data) => data);
 
-  if (data.token) {
-    setUser(data);
+  if (
+    data.token &&
+    data.name &&
+    data.surname &&
+    data.avatarUrl &&
+    data.statusUser
+  ) {
+    setUser({
+      name: data.name,
+      surname: data.surname,
+      avatarUrl: data.avatarUrl,
+      statusUser: data.statusUser,
+      token: data.token,
+    });
+
     setLoading("success");
 
     localStorage.setItem("token", `${data.token}`);

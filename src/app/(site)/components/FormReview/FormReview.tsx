@@ -1,15 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import styles from "./FormReview.module.scss";
 
 import { addReview } from "../../_api/addReview";
 
-export default function FormReview({ value }) {
+export default function FormReview({
+  value,
+}: {
+  value: { setLoading: Function; orderId: string };
+}) {
   const { setLoading, orderId } = value;
 
   const [comment, setComment] = useState("");
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[] | []>([]);
 
   return (
     <form
@@ -40,16 +44,22 @@ export default function FormReview({ value }) {
           accept="video/*, image/*"
           multiple
           className="phantom"
-          onChange={({ target }) => {
-            return setFiles((prevState) => {
-              const fileExists = prevState.some(
-                (file) => file.name === target.files[0].name
-              );
-              if (fileExists) {
-                return prevState;
-              }
-              return [...prevState, target.files[0]];
-            });
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            const { files } = event.target;
+
+            if (files) {
+              // Преобразування FileList в масив
+              const newFiles = Array.from(files);
+
+              setFiles((prevState: File[] | []) => {
+                // Фільтруємо файли, щоб уникнути дублікатів
+                const existingFiles = prevState.map((file) => file.name);
+                const uniqueFiles = newFiles.filter(
+                  (file) => !existingFiles.includes(file.name)
+                );
+                return [...prevState, ...uniqueFiles];
+              });
+            }
           }}
         />
       </label>

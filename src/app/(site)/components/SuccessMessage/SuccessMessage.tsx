@@ -1,6 +1,6 @@
 import styles from "./SuccessMessage.module.scss";
 
-export function SuccessMessage({ type }) {
+export function SuccessMessage({ type }: {type: string}) {
   switch (type) {
     case "order-create":
       return (

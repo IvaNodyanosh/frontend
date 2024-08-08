@@ -1,8 +1,8 @@
 export async function changeStatusOrder(
-  status,
-  setLoading,
-  token,
-  orderId
+  status: string,
+  setLoading: Function,
+  token: string,
+  orderId: string
 ) {
   const body = {status};
   const data = await fetch(`http://localhost:3100/api/orders/${orderId}`, {

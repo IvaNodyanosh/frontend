@@ -1,11 +1,23 @@
-# Використання офіційного Nginx образу як базового
-FROM nginx:alpine
+# Вихідний образ
+FROM node:18-alpine
 
-# Копіювання згенерованих файлів до Nginx
-COPY dist /usr/share/nginx/html
+# Встановлюємо робочу директорію
+WORKDIR /app
 
-# Встановлення конфігурації Nginx
-COPY nginx.conf /etc/nginx/nginx.conf
+# Копіюємо package.json і package-lock.json
+COPY package*.json ./
 
-# Відкриття порту
+# Встановлюємо залежності
+RUN npm install
+
+# Копіюємо всі файли в контейнер
+COPY . .
+
+# Створюємо збірку програми Next.js
+RUN npm run build
+
+# Вказуємо команду для запуску Next.js
+CMD ["npm", "start"]
+
+# Контейнер буде слухати на порту 3000
 EXPOSE 3000

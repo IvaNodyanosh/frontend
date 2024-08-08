@@ -1,4 +1,4 @@
-export async function getCurrentUser(setUser, token) {
+export async function getCurrentUser(setUser: Function, token: string) {
   const data = await fetch("http://localhost:3100/api/users/current", {
     method: "GET",
     headers: {

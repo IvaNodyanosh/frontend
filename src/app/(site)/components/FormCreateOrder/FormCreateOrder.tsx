@@ -1,15 +1,19 @@
 import styles from "./FormCreateOrder.module.scss";
 import { createOrder, registerOrder } from "../../_api/orders";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
-export function FormCreateOrder({ value }) {
+export function FormCreateOrder({
+  value,
+}: {
+  value: { setLoading: Function; user: { token: string } };
+}) {
   const { setLoading, user } = value;
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[] | []>([]);
   return (
     <form
       className={styles.form}
@@ -103,16 +107,22 @@ export function FormCreateOrder({ value }) {
           accept="video/*, audio/*, image/*, .pdf, .txt"
           multiple
           className="phantom"
-          onChange={({ target }) => {
-            return setFiles((prevState) => {
-              const fileExists = prevState.some(
-                (file) => file.name === target.files[0].name
-              );
-              if (fileExists) {
-                return prevState;
-              }
-              return [...prevState, target.files[0]];
-            });
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            const { files } = event.target;
+
+            if (files) {
+              // Преобразування FileList в масив
+              const newFiles = Array.from(files);
+
+              setFiles((prevState: File[] | [])=> {
+                // Фільтруємо файли, щоб уникнути дублікатів
+                const existingFiles = prevState.map((file) => file.name);
+                const uniqueFiles = newFiles.filter(
+                  (file) => !existingFiles.includes(file.name)
+                );
+                return [...prevState, ...uniqueFiles];
+              });
+            }
           }}
         />
         <span className={styles.cloud_text}>Nahrát souborz (do 25 MB)</span>

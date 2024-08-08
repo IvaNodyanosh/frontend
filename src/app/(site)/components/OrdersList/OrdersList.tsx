@@ -3,8 +3,12 @@
 import styles from "./OrdersList.module.scss";
 import Link from "next/link";
 
-export function OrdersList({orders}) {
-  const statusOrder = {
+export function OrdersList({
+  orders,
+}: {
+  orders: [{ _id: string; createdAt: string; status: string }] | [];
+}) {
+  const statusOrder: Record<string, string> = {
     registered: "ZAREGISTROVÁNO",
     accepted: "PŘIJATO",
     completed: "DOKONČENO",

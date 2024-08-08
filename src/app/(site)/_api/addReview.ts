@@ -1,4 +1,6 @@
-export async function addReview(orderId, comment, files, setLoading) {
+
+
+export async function addReview(orderId: string, comment: string, files: File[], setLoading: Function) {
   const formData = new FormData();
   formData.append("comment", comment);
   formData.append("orderId", orderId);

@@ -1,12 +1,35 @@
 import styles from "./AvatarForm.module.scss";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 
 import { changeAvatar } from "../../_api/changeAvatar";
 
-export function AvatarForm({ value }) {
+interface Avatar {
+  file: File | null;
+  fileUrl: string;
+}
+
+export function AvatarForm({
+  value,
+}: {
+  value: { setLoading: Function; user: { token: string }; setUser: Function };
+}) {
   const { setLoading, user, setUser } = value;
-  const [avatar, setAvatar] = useState({ file: {}, fileUrl: "" });
-  console.log(avatar);
+  const [avatar, setAvatar] = useState<Avatar>({ file: null, fileUrl: "" });
+
+  const { file } = avatar;
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    if (files && files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () =>
+        setAvatar({
+          file: files[0],
+          fileUrl: reader.result as string, // Type assertion
+        });
+    }
+  };
 
   return (
     <form
@@ -14,7 +37,7 @@ export function AvatarForm({ value }) {
       onSubmit={(e) => {
         e.preventDefault();
         setLoading("load");
-        changeAvatar(avatar.file, setLoading, setUser, user.token);
+        changeAvatar(file, setLoading, setUser, user.token);
       }}
     >
       {avatar.fileUrl !== "" && (
@@ -33,15 +56,7 @@ export function AvatarForm({ value }) {
           required
           accept="image/png, image/jpeg"
           className="phantom"
-          onChange={({ target }) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(target.files[0]);
-            reader.onload = () =>
-              setAvatar({
-                file: target.files[0],
-                fileUrl: reader.result,
-              });
-          }}
+          onChange={(e) => handleFileChange(e)}
         />
       </label>
 

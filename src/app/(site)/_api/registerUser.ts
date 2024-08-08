@@ -1,10 +1,10 @@
 export async function registerUser(
-  name,
-  surname,
-  email,
-  phone,
-  password,
-  setLoading
+  name: string,
+  surname: string,
+  email: string,
+  phone: string,
+  password: string,
+  setLoading: Function
 ) {
   const body = { name, surname, email, phone, password };
 
@@ -31,7 +31,7 @@ export async function registerUser(
   console.log(data);
 }
 
-export async function resetPassword(email, setLoading) {
+export async function resetPassword(email: string, setLoading: Function) {
   const body = { email };
 
   const data = await fetch("http://localhost:3100/api/users/password", {

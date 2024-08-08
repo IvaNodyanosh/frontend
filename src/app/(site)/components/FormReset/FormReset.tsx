@@ -4,7 +4,7 @@ import { reset } from "../../_api/resetPassword";
 
 import { useState } from "react";
 
-export default function FormReset({ value }) {
+export default function FormReset({ value }: { value: { setLoading: Function, token: string}}) {
   const { setLoading, token } = value;
   console.log(token);
   const [password, setPassword] = useState("");

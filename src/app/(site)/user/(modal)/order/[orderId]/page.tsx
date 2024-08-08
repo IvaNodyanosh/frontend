@@ -2,6 +2,8 @@
 
 import styles from "./page.module.scss";
 
+import { useParams } from "next/navigation";
+
 import { Order } from "@/app/(site)/components/Order/Order";
 import { Loader } from "@/app/(site)/components/Loader/loader";
 import { SuccessMessage } from "@/app/(site)/components/SuccessMessage/SuccessMessage";
@@ -10,10 +12,14 @@ import FormReview from "@/app/(site)/components/FormReview/FormReview";
 
 import { useState } from "react";
 
-export default function OrderPage(context) {
-  const { orderId } = context.params;
+export default function OrderPage() {
+  const params = useParams();
+  const orderId = Array.isArray(params.orderId)
+    ? params.orderId[0]
+    : params.orderId || "";
 
-  const [loading, setLoading] = useState("unloaded");
+  const [loading, setLoading] = useState<string>("unloaded");
+
   switch (loading) {
     case "unloaded":
       return (

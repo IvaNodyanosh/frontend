@@ -5,10 +5,10 @@ import styles from "./FormLogin.module.scss";
 import { login } from "../../_api/login";
 import { resetPassword } from "../../_api/registerUser";
 
-import { UserContext } from "../../layout";
+import { useUserContext } from "@/app/hooks/userHooks";
 
-export function FormLogin({ setLoading }) {
-  const { setUser } = useContext(UserContext);
+export function FormLogin({ setLoading }: { setLoading: Function }) {
+  const { setUser } = useUserContext();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +19,9 @@ export function FormLogin({ setLoading }) {
       className={styles.form}
       onSubmit={(e) => {
         e.preventDefault();
-        checkbox ? resetPassword(email, setLoading ) : login(email, password, setLoading, setUser);
+        checkbox
+          ? resetPassword(email, setLoading)
+          : login(email, password, setLoading, setUser);
       }}
     >
       <label className={styles.label}>

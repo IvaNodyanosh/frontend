@@ -1,4 +1,4 @@
-export async function getCustomer(setCustomer, id) {
+export async function getCustomer(setCustomer: Function, id: string) {
   const data = await fetch(`http://localhost:3100/api/users/${id}`, {
     method: "GET",
   })

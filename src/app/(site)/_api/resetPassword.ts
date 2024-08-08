@@ -1,4 +1,4 @@
-export async function reset(password, token, setLoading) {
+export async function reset(password: string, token: string, setLoading: Function) {
   const body = { password };
 
   const data = await fetch(

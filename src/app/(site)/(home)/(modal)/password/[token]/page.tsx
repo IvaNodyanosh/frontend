@@ -1,6 +1,8 @@
 "use client";
+
 import styles from "./page.module.scss";
 
+import { useParams } from "next/navigation";
 import { useState } from "react";
 
 import FormReset from "@/app/(site)/components/FormReset/FormReset";
@@ -8,11 +10,14 @@ import { Loader } from "@/app/(site)/components/Loader/loader";
 import { SuccessMessage } from "@/app/(site)/components/SuccessMessage/SuccessMessage";
 import { ErrorMessage } from "@/app/(site)/components/ErrorMessage/ErrorMessage";
 
-export default function ResetPassword(context) {
-  const { token } = context.params;
-  const [loading, setLoading] = useState("unloaded");
+export default function Password() {
+  const params = useParams();
+  const token = Array.isArray(params.token)
+    ? params.token[0]
+    : params.token || "";
+  const [loading, setLoading] = useState<string>("unloaded");
 
-  const value = { setLoading, token };
+  const value: { setLoading: Function; token: string } = { setLoading, token };
 
   switch (loading) {
     case "unloaded":

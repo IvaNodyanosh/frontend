@@ -1,7 +1,14 @@
-export async function changeAvatar(avatar, setLoading, setUser, token) {
+export async function changeAvatar(
+  avatar: File | null,
+  setLoading: Function,
+  setUser: Function,
+  token: String
+) {
   const formData = new FormData();
 
-  formData.append("avatar", avatar);
+  if (avatar) {
+    formData.append("avatar", avatar);
+  }
 
   console.log(token);
 
@@ -21,11 +28,19 @@ export async function changeAvatar(avatar, setLoading, setUser, token) {
     .then((data) => data);
 
   if (data.url) {
-    setUser((prevState) => {
-      return { ...prevState, avatarUrl: data.url };
-    });
-      setLoading("changed-avatar");
-      
+    setUser(
+      (prevState: {
+        name: string;
+        surname: string;
+        statusUser: string;
+        token: string;
+        avatarUrl: string;
+      }) => {
+        return { ...prevState, avatarUrl: data.url };
+      }
+    );
+    setLoading("changed-avatar");
+
     console.log(data);
   } else {
     setLoading("error");

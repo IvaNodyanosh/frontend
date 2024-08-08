@@ -4,14 +4,14 @@ import styles from "./page.module.scss";
 import { FormCreateOrder } from "@/app/(site)/components/FormCreateOrder/FormCreateOrder";
 import { useState, useContext } from "react";
 
-import { UserContext } from "@/app/(site)/layout";
+import { useUserContext } from "@/app/hooks/userHooks";
 
 import { Loader } from "@/app/(site)/components/Loader/loader";
 import { ErrorMessage } from "@/app/(site)/components/ErrorMessage/ErrorMessage";
 import { SuccessMessage } from "@/app/(site)/components/SuccessMessage/SuccessMessage";
 
 export default function Order() {
-  const { user } = useContext(UserContext);
+  const { user } = useUserContext();
   const [loading, setLoading] = useState("unloaded");
   switch (loading) {
     case "unloaded":

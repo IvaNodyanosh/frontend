@@ -6,12 +6,10 @@ import { logout } from "../../_api/logout";
 
 import { usePathname } from "next/navigation";
 
-import { useContext } from "react";
+import { useUserContext } from "@/app/hooks/userHooks";
 
-import { UserContext } from "../../layout";
-
-export default function Menu({ setOpenMenu }) {
-  const { user, setUser } = useContext(UserContext);
+export default function Menu({ setOpenMenu }: { setOpenMenu: Function }) {
+  const { user, setUser } = useUserContext();
 
   const currentPath = usePathname();
 
